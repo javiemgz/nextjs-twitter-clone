@@ -1,12 +1,15 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import {useRouter} from 'next/router'
 import AppLayout from '../components/AppLayout'
-// devit
+import { colors } from '../styles/theme'
+import Button from '../components/button'
+import { FiGithub } from "react-icons/fi"
+
+import { firebaseLogin } from '../firebase/client'
 
 export default function Home() {
-  const router = useRouter()
-
+  const handleClick = () => {
+    firebaseLogin().then(usr => console.log(usr))
+  }
   return (
     <>
       <Head>
@@ -15,37 +18,36 @@ export default function Home() {
       </Head>
 
       <AppLayout>
-        <h1>
-          <a href="https://nextjs.org">devter</a>
-        </h1>
-        <nav>
-          <Link href='/timeline'>
-            <a>
-              timeline
-            </a>
-          </Link>
-        </nav>
+        <section>
+          <img src='/devlogo.png'></img>
+          <h1> Devtter </h1>
+          <h2>Welcome to my twitter clone for devs</h2>
+          <Button onClick={handleClick}> <FiGithub size={22} /> Login with GitHub </Button>
+        </section>
       </AppLayout>
-
       <style jsx>{`
         h1 {
-          text-align: center;
-          font-size: 48px;
+          font-size: 55px;
+          color: ${colors.primary};
+          margin: 10px;
         }
 
-        nav {
-          font-size: 24px;
-          text-align: center;
+        h2 {
+          color: ${colors.secondary};
+          font-size: 20px;
+          margin-top: 0;   
+          margin-bottom: 80px;   
+        }
+        img{
+          height: 8rem;
         }
 
-        .another-title {
-          color: #333;
-          font-size: 24px;
-        }
-
-        a {
-          color: orange;
-          text-decoration: none;
+        section{
+          display: grid;
+          place-items: center;
+          place-content: center; 
+          height: 100vh;
+          padding: 10px;
         }
       `}</style>
     </>

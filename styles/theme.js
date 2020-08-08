@@ -3,8 +3,8 @@ export const fonts = {
 }
 
 export const colors = {
-    primary: '#636363',
-    secondary: '#d6a82a',
+    primary: '#303030',
+    secondary: '#41c8f4',
 }
 
 export const breakpoints ={
